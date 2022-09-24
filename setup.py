@@ -9,6 +9,7 @@ pkg_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "frida_tools")
 
 agents = glob.glob(os.path.join(pkg_dir, "*_agent.*"))
 assert len(agents) > 0, "Agents not compiled; run “npm install && npm run build” in agents/tracer/"
+package_data = agents + ["treesitter.so"]
 
 setup(
     name="frida-tools",
@@ -51,7 +52,7 @@ setup(
     ],
     packages=["frida_tools"],
     package_data={
-        "frida_tools": agents,
+        "frida_tools": package_data,
     },
     entry_points={
         "console_scripts": [
